@@ -3,35 +3,23 @@ import React, { Component } from 'react'
 class Item extends Component {
   constructor () {
     super()
-    this.state = {
-      tags: ''
-    }
   }
-
-  componentWillMount () {
-    if (this.props.kind !== 'movie') {
-      this._getTag()
-    }
-  }
-
-  _getTag () {
+  
+  _getTag(tagOrGenre) {
     const item = this.props.resultItem
-    console.log(item)
     let tags = '', arr = []
-    item.tags.map((tag, index) => {
+    item[tagOrGenre].map((tag, index) => {
       if (index < 3) {
-        arr.push(`<span>${tag.name}</span>`)
+        arr.push(<span key={Math.random()}>{tag.name ? tag.name : tag}</span>)
+        arr.push('  ')
       }
     })
-    tags = arr
-    this.setState({ tags })
-    // name = arr.join('、')
+    return arr
   }
 
   getItemHTML (kind) {
     let itemHTML
     const item = this.props.resultItem
-    console.log('item' + item)
 
     switch (kind) {
       case 'book':
@@ -43,7 +31,7 @@ class Item extends Component {
               </div>
               <div className='item-info'>
                 <p>名称：<span>{item['title']}</span></p>
-                <p className='tag' dangerouslySetInnerHTML={{ __html: this.state.tags }} />
+                <p className='tag'>{this._getTag('tags')}</p>
                 <p>作者：<span>{item['author']}</span></p>
                 <p>评分：<span>{item['rating']['average']}</span></p>
                 <p>时间：<span>{item['pubdate']}</span></p>
@@ -60,8 +48,7 @@ class Item extends Component {
               </div>
               <div className='item-info'>
                 <p>名称：<span>{item['title']}</span></p>
-                {/* <p className="tag" dangerouslySetInnerHTML={{ __html: this.state.tags }} /> */}
-                <p>{item['genres'].join('  ')}</p>
+                <p className='tag'>{this._getTag('genres')}</p>
                 <p>演员：<span>{
                   item['casts'].map ? item['casts'].map(cast => {
                     return cast.name + '  '
@@ -81,7 +68,7 @@ class Item extends Component {
               </div>
               <div className='item-info'>
                 <p>名称：<span>{item['title']}</span></p>
-                <p className='tag' dangerouslySetInnerHTML={{ __html: this.state.tags }} />
+                <p className='tag'>{this._getTag('tags')}</p>
                 <p>作者：<span>{
                   item['author'].map(author => {
                     return author.name
@@ -100,8 +87,6 @@ class Item extends Component {
   }
 
   render () {
-    // const item = this.props.resultItem
-    // console.log('lind:'+this.props.kind)
     return (
       this.getItemHTML(this.props.kind)
     )

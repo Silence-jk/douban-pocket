@@ -1,9 +1,173 @@
 body {
     padding: 0;
     margin: 0;
+    box-sizing: border-box;
+    background-color: #092b40;
+    background-clip: cover;
 }
 
-h1 {
-    text-align: center;
-    margin-top: 200px;
+.app {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    flex-direction: column;
+}
+
+ .icon {
+    /* 通过设置 font-size 来改变图标大小 */
+    width: 1em; height: 1em;
+    /* 图标和文字相邻时，垂直对齐 */
+    vertical-align: -0.15em;
+    /* 通过设置 color 来改变 SVG 的颜色/fill */
+    fill: currentColor;
+    /* path 和 stroke 溢出 viewBox 部分在 IE 下会显示
+        normalize.css 中也包含这行 */
+    overflow: hidden;
+}
+
+/* Search */
+header {
+  height: 71px;
+  padding: 10px;
+  position: fixed;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background-color: #000;
+}
+
+.search-page {
+  width: 92%;
+  margin-left: 4%;
+}
+
+form {
+  position: relative;
+  display: block;
+  z-index: 1;
+  height: 40px;
+  margin-left: 0;
+  padding: 0;
+  margin-bottom: 10px;
+  border: 4px solid #D96F32;
+  border-radius: 45px;
+  transition: all .25s ease .3s;
+  cursor: pointer;
+}
+
+input {
+  background-color: transparent;
+  outline: none;
+  border: none;
+  color: #fff;
+  width: 100%;
+  height: 100%;
+  padding: 0 30px 0 15px;
+  font-size: 14px;
+  line-height: 38px;
+  box-shadow: none;
+}
+
+form svg {
+  position: absolute;
+  right: 15px;
+  bottom: 4px;
+}
+
+a > .search {
+  font-size: xx-large;
+  color: #D96F32;
+}
+
+[data-status="detail"] .detail-page {
+  display: block;
+}
+
+/* List */
+main {
+  margin-top: 85px;
+}
+
+main > div {
+  margin: 25px;
+  border: 4px solid #d96F32;
+}
+
+.item-img {
+  float: left;
+  display: block;
+}
+
+.item-img img {
+  width: 105px;
+  height: 140px;
+}
+
+.item-info {
+  margin-left: 115px;
+}
+
+p {
+  color: white;
+  overflow: hidden;
+  text-overflow:ellipsis;
+  white-space: nowrap;
+}
+
+p .tags {
+  background-color: #d96F32;
+}
+
+/* Item */
+p.tag > span {
+  border: 1px solid #d96f32;
+  background-color: #d96f32;
+}
+
+/* Tab */
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 80px;
+  border-top: 1px solid #dbdbdb;
+  background-color: #000;
+}
+
+a {
+  background: transparent;
+  text-decoration: none;
+  color: #333;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  height: 100%;
+}
+
+.nav-link {
+  padding: 5px;
+  color: white;
+}
+
+.nav-link span {
+  display: block;
+  padding-left: 10px;
+  color: #d96f32;
+  margin-top: 5px;
+}
+
+a > .tab {
+  font-size: 48px;
+  fill: #d96f32;
+}
+
+/*active cornflowerblue */
+.nav-link:hover .tab, .nav-link:hover > span, .nav-link .tab_click {
+  fill: cornflowerblue;
+  color: cornflowerblue;
 }

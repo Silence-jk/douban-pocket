@@ -5,6 +5,7 @@
   "main": "dist/bundle.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "webpack",
     "dev": "webpack-dev-server --open"
   },
   "keywords": [],
@@ -15,9 +16,16 @@
     "babel-loader": "^7.1.1",
     "babel-preset-es2015": "^6.24.1",
     "babel-preset-react": "^6.24.1",
+    "clean-webpack-plugin": "^0.1.18",
     "css-loader": "^0.28.4",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "fetch-jsonp": "^1.1.3",
     "html-webpack-plugin": "^2.30.1",
+    "react-redux": "^5.0.6",
+    "redux": "^3.7.2",
+    "standard": "^11.0.0",
     "style-loader": "^0.18.2",
+    "uglifyjs-webpack-plugin": "^1.2.0",
     "webpack": "^3.5.4",
     "webpack-dev-server": "^2.7.1"
   },

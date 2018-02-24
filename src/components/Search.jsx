@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import fetchJsonp from 'fetch-jsonp'
+import PropTypes from 'prop-types'
 
 class Search extends Component {
   constructor () {
@@ -36,6 +37,35 @@ class Search extends Component {
     }
   }
 
+  _getPage () {
+    let page
+    if (this.props.isShowDetail) {
+      page = 
+        <section className='detail-page'>
+          <a onClick={this.handleBack.bind(this)}>
+            <svg className='icon back' aria-hidden='true'>
+              <use xlinkHref='#icon-back' />
+            </svg>
+          </a>
+          <span>{this.props.kind}</span>
+        </section> 
+    } else {
+      page = 
+        <section className='search-page'>
+          <form action=''>
+            <input type='text' placeholder={this._getPlaceHolder(this.props.kind)} onKeyUp={this.handleKeyUp.bind(this)} required />
+            <a onClick={this.handleSearch.bind(this)}>
+              <svg className='icon search' aria-hidden='true'>
+                <use xlinkHref='#icon-search' />
+              </svg>
+            </a>
+            <input id='hiddenText' type='text' style={{ display: 'none' }} />
+          </form>
+        </section>
+    }
+    return page
+  }
+
   handleSearch (value) {
     if (this.state.value !== '') {
       let value = this.state.value
@@ -63,26 +93,25 @@ class Search extends Component {
     this.setState({ value: event.target.value })
   }
 
+  handleBack () {
+    this.props.detailStatus(false)
+  }
+
   render () {
     return (
       <header data-status='search'>
         <div className='header-wrap'>
-          <section className='search-page'>
-            <form action=''>
-              <input type='text' placeholder={this._getPlaceHolder(this.props.kind)} onKeyUp={this.handleKeyUp.bind(this)} required />
-              <a onClick={this.handleSearch.bind(this)}>
-                <svg className='icon search' aria-hidden='true'>
-                  <use xlinkHref='#icon-search' />
-                </svg>
-              </a>
-              <input id='hiddenText' type='text' style={{display: 'none'}} />
-            </form>
-          </section>
-          <section className='detail-page' />
+          {this._getPage()}
         </div>
       </header>
     )
   }
+}
+
+Search.propTypes = {
+  isShowDetail: PropTypes.bool,
+  list: PropTypes.func,
+  kind: PropTypes.string
 }
 
 module.exports = Search

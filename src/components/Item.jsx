@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import fetchJsonp from "fetch-jsonp";
 
 class Item extends Component {
   constructor () {
@@ -17,6 +18,7 @@ class Item extends Component {
     return arr
   }
 
+  
   getItemHTML (kind) {
     let itemHTML
     const item = this.props.resultItem
@@ -24,7 +26,7 @@ class Item extends Component {
     switch (kind) {
       case 'book':
         itemHTML =
-          <div>
+          <div onClick={this.handleClick.bind(this, kind, item['id'])}>
             <div className='book'>
               <div className='item-img'>
                 <img src={item['image']} />
@@ -32,7 +34,7 @@ class Item extends Component {
               <div className='item-info'>
                 <p>名称：<span>{item['title']}</span></p>
                 <p className='tag'>{this._getTag('tags')}</p>
-                <p>作者：<span>{item['author']}</span></p>
+                <p>作者：<span>{item['author'].join('  ')}</span></p>
                 <p>评分：<span>{item['rating']['average']}</span></p>
                 <p>时间：<span>{item['pubdate']}</span></p>
               </div>
@@ -41,7 +43,7 @@ class Item extends Component {
         break
       case 'movie':
         itemHTML =
-          <div>
+          <div onClick={this.handleClick.bind(this, kind, item['id'])}>
             <div className='movie'>
               <div className='item-img'>
                 <img src={item['images']['small']} />
@@ -61,7 +63,7 @@ class Item extends Component {
         break
       case 'music':
         itemHTML =
-          <div>
+          <div onClick={this.handleClick.bind(this, kind, item['id'])}>
             <div className='music'>
               <div className='item-img'>
                 <img src={item['image']} />
@@ -84,6 +86,20 @@ class Item extends Component {
     }
 
     return itemHTML
+  }
+
+  handleClick (kind, id) {
+    fetchJsonp(`https://api.douban.com/v2/${kind}/${id}`, {
+      timeout: 3000
+    }).then((response) => {
+      return response.json()
+    }).then((json) => {
+      console.log('parsed json', json)
+      this.props.detail(json)
+      return json
+    }).catch((ex) => {
+      console.log('parsing failed', ex)
+    })
   }
 
   render () {

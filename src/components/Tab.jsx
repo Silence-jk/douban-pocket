@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import fetchJsonp from 'fetch-jsonp'
+import PropTypes from 'prop-types'
 
 class Tab extends Component {
   constructor () {
@@ -96,4 +97,7 @@ class Tab extends Component {
   }
 }
 
+Tab.propTypes = {
+  result: PropTypes.func
+}
 module.exports = Tab

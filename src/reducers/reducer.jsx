@@ -1,6 +1,6 @@
 const UPDATE_KIND = 'UPDATE_KIND'
 const UPDATE_LIST = 'UPDATE_LIST'
-
+const UPDATE_DETAIL = 'UPDATE_DETAIL'
 /**
  *
  * @param {*} state
@@ -13,7 +13,8 @@ export default function (state, action) {
         kind: 'book',
         list: {
 
-        }
+        },
+        isShowDetail: false
       }
     }
   }
@@ -23,16 +24,26 @@ export default function (state, action) {
       return {
         datas: {
           kind: action.newKind,
-          list: state.datas.list
+          list: state.datas.list,
+          isShowDetail: state.datas.isShowDetail
         }
       }
     case UPDATE_LIST:
       return {
         datas: {
           kind: state.datas.kind,
-          list: action.newList
+          list: action.newList,
+          isShowDetail: state.datas.isShowDetail
         }
       }
+    case UPDATE_DETAIL:
+      return {
+        datas: {
+          kind: state.datas.kind,
+          list: state.datas.list,
+          isShowDetail: action.newDeatilStatus
+        }
+      }  
     default:
       return {
         state
@@ -51,5 +62,12 @@ export const updateList = (newList) => {
   return {
     type: UPDATE_LIST,
     newList
+  }
+}
+
+export const updateDetail = (newDeatilStatus) => {
+  return {
+    type: UPDATE_DETAIL,
+    newDeatilStatus
   }
 }

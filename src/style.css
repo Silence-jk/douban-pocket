@@ -81,18 +81,33 @@ a > .search {
   color: #D96F32;
 }
 
-[data-status="detail"] .detail-page {
-  display: block;
+.detail-page a {
+  display: inline-block;
+}
+
+.detail-page svg, .detail-page span {
+  font-size: 50px;
+  color: #6495ed;
+}
+
+.detail-page span {
+  margin-left: 20%;
+}
+
+.detail-page use{
+  fill: #6495ed;
 }
 
 /* List */
 main {
   margin-top: 85px;
+  margin-bottom: 85px;
 }
 
 main > div {
   margin: 25px;
   border: 4px solid #d96F32;
+  cursor: pointer;
 }
 
 .item-img {
@@ -109,8 +124,11 @@ main > div {
   margin-left: 115px;
 }
 
-p {
+div p {
   color: white;
+}
+
+.book p {
   overflow: hidden;
   text-overflow:ellipsis;
   white-space: nowrap;
@@ -118,6 +136,49 @@ p {
 
 p .tags {
   background-color: #d96F32;
+}
+
+/* Detail */
+.item-detail {
+  margin: 0;
+  border: 0;
+}
+
+.item-detail h2 {
+  color: #d96f32;
+}
+
+.book-detail img {
+  width: 150px;
+  height: auto;
+}
+
+.book-detail .item-info {
+  margin-left: 170px;
+}
+
+.item-detail p {
+  color: white;
+}
+
+.item-detail pre {
+  font-size: 16px;
+  color: white;
+}
+
+.movie-detail .item-img {
+  display: block;
+  float: none;
+  text-align: center;
+}
+
+.movie-detail img {
+  height: auto;
+  width: auto;
+}
+
+.movie-detail .item-info {
+  margin-left: 0;
 }
 
 /* Item */

@@ -1,9 +1,25 @@
 import React, { Component } from 'react'
 import Item from './Item'
+import Detail from './Detail'
 
 class List extends Component {
   constructor (props) {
     super(props)
+    this.state = {
+      detailList: {}
+    }
+  }
+
+  componentWillMount() {
+    console.log('.........' + this.props.isShowDetail);
+  }
+  
+  handleDetail(value) {
+    console.log('value:' + value);
+    this.setState({
+      detailList: value
+    })
+    this.props.detailStatus(true)
   }
 
   render () {
@@ -28,8 +44,9 @@ class List extends Component {
     return (
       <main className='container'>
         {
+          this.props.isShowDetail ? <Detail kind={kind} detailList={this.state.detailList}/> :
           items ? items.map((item, index) => {
-            return <Item resultItem={item} key={item.id} id={item.id} kind={kind} />
+            return <Item resultItem={item} detail={this.handleDetail.bind(this)} key={item.id} id={item.id} kind={kind} />
           }) : ''
         }
       </main>

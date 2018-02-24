@@ -16,15 +16,12 @@ class SearchContainer extends Component {
   }
 
   handleBack (value) {
-    console.log('value status: ' + value);
-    
     if (this.props.onUpdateDetail) {
       this.props.onUpdateDetail(value)
     }
   }
 
   render () {
-    console.log(this.props.datas)
     const {kind, isShowDetail} = this.props.datas
     return (
       <Search list={this.handleChange.bind(this)} kind={kind} isShowDetail={isShowDetail} detailStatus={this.handleBack.bind(this)}/>
@@ -34,6 +31,7 @@ class SearchContainer extends Component {
 
 Search.propTypes = {
   onUpdateList: PropTypes.func,
+  onUpdateDetail: PropTypes.func,
   datas: PropTypes.object
 }
 

@@ -15,9 +15,10 @@ class TabContainer extends Component {
   }
 
   render () {
+    const {kind} = this.props.datas
     return (
       this.props.datas.isShowDetail ? null :
-      <Tab result={this.handleChange.bind(this)} />
+      <Tab result={this.handleChange.bind(this)} kind={kind}/>
     )
   }
 }

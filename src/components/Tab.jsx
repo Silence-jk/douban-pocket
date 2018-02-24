@@ -8,7 +8,39 @@ class Tab extends Component {
   }
 
   componentDidMount () {
+    console.log('componentDidMount .......');
+    console.log('kind:' + this.props.kind);
+     
+    switch (this.props.kind) {
+      case 'book':
+        this._loadInitClass(0)
+        break;
+      case 'movie':
+        this._loadInitClass(1)
+        break;
+      case 'music':
+        this._loadInitClass(2)
+        break;
+      default: 
+        break; 
+      } 
+  }
+  _loadInitClass (index) {
+    let nav = this.nav
+    let uses = nav.querySelectorAll('use')
+    let spans = nav.querySelectorAll('span')
 
+    for (let i = 0; i < uses.length; i++) {
+      if (index === i) {
+        if(!uses[i].classList.contains('tab_click')) {
+          uses[i].classList.add('tab_click')
+          spans[i].classList.add('tab_click')
+        }
+      } else {
+        uses[i].classList.remove('tab_click')
+        spans[i].classList.remove('tab_click')
+      }
+    }
   }
 
   _loadClass (curr) {
@@ -28,7 +60,7 @@ class Tab extends Component {
     }
   }
 
-  _getDefaultUrl (kind) {
+  getDefaultUrl (kind) {
     switch (kind) {
       case 'book':
         return `https://api.douban.com/v2/book/search?q=${encodeURIComponent('腾讯')}&count=5`
@@ -55,7 +87,7 @@ class Tab extends Component {
   }
 
   handleTabKind (kind) {
-    let url = this._getDefaultUrl(kind)
+    let url = this.getDefaultUrl(kind)
     fetchJsonp(url, {
       timeout: 3000
     }).then((response) => {
@@ -75,9 +107,9 @@ class Tab extends Component {
         <nav className='nav' ref={nav => this.nav = nav} onClick={this.handleClick.bind(this)}>
           <a className='nav-link book' href='#' onClick={this.handleTabKind.bind(this, 'book')}>
             <svg className='icon tab' aria-hidden='true'>
-              <use xlinkHref='#icon-book' className='tab_click' />
+              <use xlinkHref='#icon-book'/>
             </svg>
-            <span className='tab_click'>图书</span>
+            <span>图书</span>
           </a>
           <a className='nav-link' href='#' onClick={this.handleTabKind.bind(this, 'movie')}>
             <svg className='icon tab' aria-hidden='true'>
@@ -98,6 +130,7 @@ class Tab extends Component {
 }
 
 Tab.propTypes = {
-  result: PropTypes.func
+  result: PropTypes.func,
+  kind: PropTypes.string
 }
 module.exports = Tab

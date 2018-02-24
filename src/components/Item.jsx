@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import fetchJsonp from "fetch-jsonp";
 
 class Item extends Component {
@@ -6,7 +7,7 @@ class Item extends Component {
     super()
   }
   
-  _getTag(tagOrGenre) {
+  getTag(tagOrGenre) {
     const item = this.props.resultItem
     let tags = '', arr = []
     item[tagOrGenre].map((tag, index) => {
@@ -33,7 +34,7 @@ class Item extends Component {
               </div>
               <div className='item-info'>
                 <p>名称：<span>{item['title']}</span></p>
-                <p className='tag'>{this._getTag('tags')}</p>
+                <p className='tag'>{this.getTag('tags')}</p>
                 <p>作者：<span>{item['author'].join('  ')}</span></p>
                 <p>评分：<span>{item['rating']['average']}</span></p>
                 <p>时间：<span>{item['pubdate']}</span></p>
@@ -50,7 +51,7 @@ class Item extends Component {
               </div>
               <div className='item-info'>
                 <p>名称：<span>{item['title']}</span></p>
-                <p className='tag'>{this._getTag('genres')}</p>
+                <p className='tag'>{this.getTag('genres')}</p>
                 <p>演员：<span>{
                   item['casts'].map ? item['casts'].map(cast => {
                     return cast.name + '  '
@@ -70,7 +71,7 @@ class Item extends Component {
               </div>
               <div className='item-info'>
                 <p>名称：<span>{item['title']}</span></p>
-                <p className='tag'>{this._getTag('tags')}</p>
+                <p className='tag'>{this.getTag('tags')}</p>
                 <p>作者：<span>{
                   item['author'].map(author => {
                     return author.name
@@ -107,6 +108,12 @@ class Item extends Component {
       this.getItemHTML(this.props.kind)
     )
   }
+}
+
+Item.propTypes = {
+  kind: PropTypes.string,
+  resultItem: PropTypes.object,
+  detail: PropTypes.func
 }
 
 module.exports = Item

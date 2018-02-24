@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import PropTypes from 'prop-types'
 import Item from './Item'
 import Detail from './Detail'
 
@@ -10,10 +11,6 @@ class List extends Component {
     }
   }
 
-  componentWillMount() {
-    console.log('.........' + this.props.isShowDetail);
-  }
-  
   handleDetail(value) {
     console.log('value:' + value);
     this.setState({
@@ -56,6 +53,13 @@ class List extends Component {
 
 List.defaultProps = {
   list: []
+}
+
+List.propTypes = {
+  detailStatus: PropTypes.func,
+  list: PropTypes.object,
+  kind: PropTypes.string,
+  isShowDetail: PropTypes.bool
 }
 
 module.exports = List

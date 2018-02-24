@@ -1,4 +1,5 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
 import {updateDetail} from '../reducers/reducer'
 import List from '../components/List'
@@ -16,6 +17,10 @@ class ListContainer extends Component {
   }
 }
 
+ListContainer.propTypes = {
+  datas: PropTypes.object,
+  onUpdateDetail: PropTypes.func
+}
 const mapStateToProps = (state) => {
   return {
     datas: state.datas

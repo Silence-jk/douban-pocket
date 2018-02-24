@@ -1,11 +1,12 @@
 import React, {Component} from 'react'
+import PropTypes from 'prop-types'
 
 class Detail extends Component {
   constructor() {
     super()
   }
 
-  _getTag(tagOrGenre) {
+  getTag(tagOrGenre) {
     const item = this.props.detailList
     let tags = '', arr = []
     item[tagOrGenre].map((tag, index) => {
@@ -17,7 +18,7 @@ class Detail extends Component {
     return arr
   }
 
-  _getItemDeail(kind) {
+  getItemDeail(kind) {
     const item = this.props.detailList
     console.log('item:'+item);
     let detail
@@ -36,7 +37,7 @@ class Detail extends Component {
                 <p>日期：<span>{item['pubdate']}</span></p>
                 <p>评分：<span>{item['rating']["average"]}</span></p>
                 <p>价钱：<span>&yen;{item['price']}</span></p>
-                <p className="tag">{this._getTag('tags')}</p>
+                <p className="tag">{this.getTag('tags')}</p>
               </div>
             </div>
             <hr/>
@@ -57,7 +58,7 @@ class Detail extends Component {
               <div className='item-info'>
                 <h2>简介</h2>
                 <p>名称：<span>{item['title']}</span></p>
-                <p className="tag">{this._getTag('tags')}</p>
+                <p className="tag">{this.getTag('tags')}</p>
                 <p>上映时间：{item['year']}</p>
                 <p>导演：{item['attrs']['director'].map(director => {
                   return director
@@ -81,7 +82,7 @@ class Detail extends Component {
               </div>
               <div className='item-info'>
                 <p>名称：<span>{item['title']}</span></p>
-                <p className='tag'>{this._getTag('tags')}</p>
+                <p className='tag'>{this.getTag('tags')}</p>
                 <p>作者：<span>{
                   item['author'].map(author => {
                     return author.name
@@ -106,9 +107,13 @@ class Detail extends Component {
 
   render() {
     return (
-      this._getItemDeail(this.props.kind)
+      this.getItemDeail(this.props.kind)
     )
   }
 }
 
+Detail.propTypes = {
+  kind: PropTypes.string,
+  detailList: PropTypes.object
+}
 module.exports = Detail

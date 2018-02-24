@@ -25,7 +25,7 @@ class Search extends Component {
     })
   }
 
-  _getPlaceHolder (kind) {
+  getPlaceHolder (kind) {
     switch (kind) {
       case 'movie':
         return '电影、影人、影院、电视剧'
@@ -37,7 +37,7 @@ class Search extends Component {
     }
   }
 
-  _getPage () {
+  getPage () {
     let page
     if (this.props.isShowDetail) {
       page = 
@@ -53,7 +53,7 @@ class Search extends Component {
       page = 
         <section className='search-page'>
           <form action=''>
-            <input type='text' placeholder={this._getPlaceHolder(this.props.kind)} onKeyUp={this.handleKeyUp.bind(this)} required />
+            <input type='text' placeholder={this.getPlaceHolder(this.props.kind)} onKeyUp={this.handleKeyUp.bind(this)} required />
             <a onClick={this.handleSearch.bind(this)}>
               <svg className='icon search' aria-hidden='true'>
                 <use xlinkHref='#icon-search' />
@@ -101,7 +101,7 @@ class Search extends Component {
     return (
       <header data-status='search'>
         <div className='header-wrap'>
-          {this._getPage()}
+          {this.getPage()}
         </div>
       </header>
     )
@@ -111,7 +111,8 @@ class Search extends Component {
 Search.propTypes = {
   isShowDetail: PropTypes.bool,
   list: PropTypes.func,
-  kind: PropTypes.string
+  kind: PropTypes.string,
+  detailStatus: PropTypes.func
 }
 
 module.exports = Search

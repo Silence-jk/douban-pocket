@@ -4,10 +4,6 @@ import List from './List'
 import Tab from './Tab'
 
 class App extends Component {
-  constructor () {
-    super()
-  }
-
   render () {
     return (
       <div className='app'>

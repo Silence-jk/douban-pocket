@@ -3,10 +3,6 @@ import fetchJsonp from 'fetch-jsonp'
 import PropTypes from 'prop-types'
 
 class Search extends Component {
-  constructor () {
-    super()
-  }
-
   // 在组件渲染前调用，可以在里面用fetchJsonp设置初始页面
   componentWillMount () {
     fetchJsonp(`https://api.douban.com/v2/book/search?q=${encodeURIComponent('腾讯')}&count=5`, {
@@ -14,7 +10,6 @@ class Search extends Component {
     }).then((response) => {
       return response.json()
     }).then((json) => {
-      console.log('parsed json', json)
       this.props.list(json)
       return json
     }).catch((ex) => {
@@ -37,7 +32,7 @@ class Search extends Component {
   getPage () {
     let page
     if (this.props.isShowDetail) {
-      page = 
+      page =
         <section className='detail-page'>
           <a onClick={this.handleBack.bind(this)}>
             <svg className='icon back' aria-hidden='true'>
@@ -45,13 +40,13 @@ class Search extends Component {
             </svg>
           </a>
           <span>{this.props.kind}</span>
-        </section> 
+        </section>
     } else {
-      page = 
+      page =
         <section className='search-page'>
           <form action=''>
-            <input type='text' placeholder={this.getPlaceHolder(this.props.kind)} 
-              onKeyUp={this.handleKeyUp.bind(this)} 
+            <input type='text' placeholder={this.getPlaceHolder(this.props.kind)}
+              onKeyUp={this.handleKeyUp.bind(this)}
               ref={input => this.input = input}
               required />
             <a onClick={this.handleSearch.bind(this, this.props.useQuery)}>
@@ -73,7 +68,6 @@ class Search extends Component {
     }).then((response) => {
       return response.json()
     }).then((json) => {
-      console.log('parsed json', json)
       this.props.list(json)
       return json
     }).catch((ex) => {

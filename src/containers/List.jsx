@@ -8,7 +8,7 @@ class ListContainer extends Component {
     this.props.onUpdateDetail(value)
   }
 
-  handleRefreshList(value) {
+  handleRefreshList (value) {
     this.props.onUpdateList(value)
   }
 
@@ -18,7 +18,7 @@ class ListContainer extends Component {
       <List list={list} kind={kind} isShowDetail={isShowDetail} query={query}
         detailStatus={this.handleDetailStatus.bind(this)}
         refreshList={this.handleRefreshList.bind(this)}
-        /> 
+        />
     )
   }
 }

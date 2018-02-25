@@ -48,7 +48,7 @@ export default function (state, action) {
           isShowDetail: action.newDeatilStatus,
           query: state.datas.query
         }
-      }  
+      }
     case UPDATE_QUERY:
       return {
         datas: {
@@ -57,7 +57,7 @@ export default function (state, action) {
           isShowDetail: state.datas.isShowDetail,
           query: action.newQuery
         }
-      }  
+      }
     default:
       return {
         state

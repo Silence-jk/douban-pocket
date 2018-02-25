@@ -4,24 +4,20 @@ import fetchJsonp from 'fetch-jsonp'
 import PropTypes from 'prop-types'
 
 class Tab extends Component {
-  constructor () {
-    super()
-  }
-
   componentDidMount () {
     switch (this.props.kind) {
       case 'book':
         this._loadInitClass(0)
-        break;
+        break
       case 'movie':
         this._loadInitClass(1)
-        break;
+        break
       case 'music':
         this._loadInitClass(2)
-        break;
-      default: 
-        break; 
-      } 
+        break
+      default:
+        break
+    }
   }
   _loadInitClass (index) {
     let nav = this.nav
@@ -30,7 +26,7 @@ class Tab extends Component {
 
     for (let i = 0; i < uses.length; i++) {
       if (index === i) {
-        if(!uses[i].classList.contains('tab_click')) {
+        if (!uses[i].classList.contains('tab_click')) {
           uses[i].classList.add('tab_click')
           spans[i].classList.add('tab_click')
         }
@@ -45,10 +41,9 @@ class Tab extends Component {
     let nav = this.nav
     let uses = nav.querySelectorAll('use')
     let spans = nav.querySelectorAll('span')
-    console.log('this state' + curr)
 
     for (let i = 0; i < uses.length; i++) {
-      if (curr == uses[i]) {
+      if (curr === uses[i]) {
         uses[i].classList.add('tab_click')
         spans[i].classList.add('tab_click')
       } else {
@@ -67,7 +62,6 @@ class Tab extends Component {
     } else {
       curr = event.target
     }
-    console.log(curr)
     this._loadClass(curr)
   }
 
@@ -78,7 +72,6 @@ class Tab extends Component {
     }).then((response) => {
       return response.json()
     }).then((json) => {
-      console.log('parsed json', json)
       this.props.result(json, kind, '')
       return json
     }).catch((ex) => {
@@ -92,7 +85,7 @@ class Tab extends Component {
         <nav className='nav' ref={nav => this.nav = nav} onClick={this.handleClick.bind(this)}>
           <a className='nav-link book' href='#' onClick={this.handleTabKind.bind(this, 'book')}>
             <svg className='icon tab' aria-hidden='true'>
-              <use xlinkHref='#icon-book'/>
+              <use xlinkHref='#icon-book' />
             </svg>
             <span>图书</span>
           </a>

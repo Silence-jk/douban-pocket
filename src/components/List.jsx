@@ -16,15 +16,14 @@ class List extends Component {
 
   }
 
-  handleDetail(value) {
-    console.log('value:' + value);
+  handleDetail (value) {
     this.setState({
       detailList: value
     })
     this.props.detailStatus(true)
   }
 
-  handleRefreshList(value) {
+  handleRefreshList (value) {
     this.props.refreshList(value)
   }
 
@@ -47,11 +46,11 @@ class List extends Component {
     }
 
     return (
-      <main className='container' id="main">
-        <Refresh kind={kind} query={query} refreshList={this.handleRefreshList.bind(this)}/>
+      <main className='container' id='main'>
+        <Refresh kind={kind} query={query} refreshList={this.handleRefreshList.bind(this)} />
         {
-          this.props.isShowDetail ? <Detail kind={kind} detailList={this.state.detailList}/> :
-          items ? items.map((item, index) => {
+          this.props.isShowDetail ? <Detail kind={kind} detailList={this.state.detailList} />
+          : items ? items.map((item, index) => {
             return <Item resultItem={item} detail={this.handleDetail.bind(this)} key={item.id} id={item.id} kind={kind} />
           }) : ''
         }

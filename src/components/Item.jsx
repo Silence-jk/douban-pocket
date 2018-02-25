@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import fetchJsonp from "fetch-jsonp";
+import fetchJsonp from 'fetch-jsonp'
 
 class Item extends Component {
-  constructor () {
-    super()
-  }
-  
-  getTag(tagOrGenre) {
+  getTag (tagOrGenre) {
     const item = this.props.resultItem
-    let tags = '', arr = []
+    let arr = []
     item[tagOrGenre].map((tag, index) => {
       if (index < 3) {
         arr.push(<span key={Math.random()}>{tag.name ? tag.name : tag}</span>)
@@ -19,7 +15,6 @@ class Item extends Component {
     return arr
   }
 
-  
   getItemHTML (kind) {
     let itemHTML
     const item = this.props.resultItem
@@ -27,7 +22,8 @@ class Item extends Component {
     switch (kind) {
       case 'book':
         itemHTML =
-          <div onTouchStart={this.handleClick.bind(this, kind, item['id'])}>
+          <div onTouchStart={this.handleClick.bind(this, kind, item['id'])}
+            onClick={this.handleClick.bind(this, kind, item['id'])}>
             <div className='book'>
               <div className='item-img'>
                 <img src={item['image']} />
@@ -44,7 +40,8 @@ class Item extends Component {
         break
       case 'movie':
         itemHTML =
-          <div onTouchStart={this.handleClick.bind(this, kind, item['id'])}>
+          <div onTouchStart={this.handleClick.bind(this, kind, item['id'])}
+            onClick={this.handleClick.bind(this, kind, item['id'])}>
             <div className='movie'>
               <div className='item-img'>
                 <img src={item['images']['small']} />
@@ -64,7 +61,8 @@ class Item extends Component {
         break
       case 'music':
         itemHTML =
-          <div onTouchStart={this.handleClick.bind(this, kind, item['id'])}>
+          <div onTouchStart={this.handleClick.bind(this, kind, item['id'])}
+            onClick={this.handleClick.bind(this, kind, item['id'])}>
             <div className='music'>
               <div className='item-img'>
                 <img src={item['image']} />
@@ -95,7 +93,6 @@ class Item extends Component {
     }).then((response) => {
       return response.json()
     }).then((json) => {
-      console.log('parsed json', json)
       this.props.detail(json)
       return json
     }).catch((ex) => {

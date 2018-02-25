@@ -236,7 +236,7 @@ a > .tab {
 }
 
 /* refresh */
-main > #sd {margin-left: 0; border: 0; min-height: 0; width: 95%;}
+main > #sd {margin-left: 0; border: 0; min-height: 0; width: 95%; }
 #sd,#ud{margin-top: 0;width: 100%;}
 #sd1,#sd2,#ud1,#ud2{width: 100%;height: 70px;background: #e9f4f7;display: none;}
 #sd1,#ud2{height: 20px;}

@@ -1,8 +1,8 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
-import PropTypes from "prop-types";
+import PropTypes from 'prop-types'
 import Tab from '../components/Tab'
-import {updateKind, updateList, updateDetail, updateQuery} from '../reducers/reducer'
+import {updateKind, updateList, updateQuery} from '../reducers/reducer'
 
 class TabContainer extends Component {
   handleChange (value, kind, query) {
@@ -14,8 +14,8 @@ class TabContainer extends Component {
   render () {
     const {kind} = this.props.datas
     return (
-      this.props.datas.isShowDetail ? null :
-      <Tab result={this.handleChange.bind(this)} kind={kind}/>
+      this.props.datas.isShowDetail ? null
+      : <Tab result={this.handleChange.bind(this)} kind={kind} />
     )
   }
 }

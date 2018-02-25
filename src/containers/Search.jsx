@@ -5,10 +5,6 @@ import { updateList, updateDetail, updateQuery } from '../reducers/reducer'
 import Search from '../components/Search'
 
 class SearchContainer extends Component {
-  constructor () {
-    super()
-  }
-
   handleChange (value) {
     if (this.props.onUpdateList) {
       this.props.onUpdateList(value)
@@ -22,7 +18,7 @@ class SearchContainer extends Component {
   }
 
   handleQuery (value) {
-    if(this.props.onUpdateQuery) {
+    if (this.props.onUpdateQuery) {
       this.props.onUpdateQuery(value)
     }
   }

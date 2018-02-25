@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
-import { updateList, updateDetail } from '../reducers/reducer'
+import { updateList, updateDetail, updateQuery } from '../reducers/reducer'
 import Search from '../components/Search'
 
 class SearchContainer extends Component {
@@ -21,10 +21,20 @@ class SearchContainer extends Component {
     }
   }
 
+  handleQuery (value) {
+    if(this.props.onUpdateQuery) {
+      this.props.onUpdateQuery(value)
+    }
+  }
+
   render () {
-    const {kind, isShowDetail} = this.props.datas
+    const {kind, isShowDetail, query} = this.props.datas
     return (
-      <Search list={this.handleChange.bind(this)} kind={kind} isShowDetail={isShowDetail} detailStatus={this.handleBack.bind(this)}/>
+      <Search list={this.handleChange.bind(this)} kind={kind} isShowDetail={isShowDetail}
+        detailStatus={this.handleBack.bind(this)}
+        storeQuery={this.handleQuery.bind(this)}
+        useQuery={query}
+        />
     )
   }
 }
@@ -36,7 +46,6 @@ Search.propTypes = {
 }
 
 const mapStateToProps = (state) => {
-  console.log('state: ' + state.datas)
   return {
     datas: state.datas
   }
@@ -49,6 +58,9 @@ const mapDispatchToProps = (dispatch) => {
     },
     onUpdateDetail: (newDetailStatus) => {
       dispatch(updateDetail(newDetailStatus))
+    },
+    onUpdateQuery: (newQuery) => {
+      dispatch(updateQuery(newQuery))
     }
   }
 }

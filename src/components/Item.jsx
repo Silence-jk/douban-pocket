@@ -27,7 +27,7 @@ class Item extends Component {
     switch (kind) {
       case 'book':
         itemHTML =
-          <div onClick={this.handleClick.bind(this, kind, item['id'])}>
+          <div onTouchStart={this.handleClick.bind(this, kind, item['id'])}>
             <div className='book'>
               <div className='item-img'>
                 <img src={item['image']} />
@@ -44,7 +44,7 @@ class Item extends Component {
         break
       case 'movie':
         itemHTML =
-          <div onClick={this.handleClick.bind(this, kind, item['id'])}>
+          <div onTouchStart={this.handleClick.bind(this, kind, item['id'])}>
             <div className='movie'>
               <div className='item-img'>
                 <img src={item['images']['small']} />
@@ -64,7 +64,7 @@ class Item extends Component {
         break
       case 'music':
         itemHTML =
-          <div onClick={this.handleClick.bind(this, kind, item['id'])}>
+          <div onTouchStart={this.handleClick.bind(this, kind, item['id'])}>
             <div className='music'>
               <div className='item-img'>
                 <img src={item['image']} />

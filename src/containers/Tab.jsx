@@ -2,16 +2,13 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from "prop-types";
 import Tab from '../components/Tab'
-import {updateKind, updateList, updateDetail} from '../reducers/reducer'
+import {updateKind, updateList, updateDetail, updateQuery} from '../reducers/reducer'
 
 class TabContainer extends Component {
-  handleChange (value, kind) {
-    console.log('value: ' + value)
-    console.log('kind: ' + kind)
-
-    this.props.updateList(value)
-    this.props.updateKind(kind)
-    
+  handleChange (value, kind, query) {
+    this.props.onUpdateList(value)
+    this.props.onUpdateKind(kind)
+    this.props.onUpdateQuery(query)
   }
 
   render () {
@@ -37,11 +34,14 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    updateKind: (newKind) => {
+    onUpdateKind: (newKind) => {
       dispatch(updateKind(newKind))
     },
-    updateList: (newList) => {
+    onUpdateList: (newList) => {
       dispatch(updateList(newList))
+    },
+    onUpdateQuery: (newQuery) => {
+      dispatch(updateQuery(newQuery))
     }
   }
 }

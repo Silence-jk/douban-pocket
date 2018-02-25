@@ -10,10 +10,8 @@ class Detail extends Component {
     const item = this.props.detailList
     let tags = '', arr = []
     item[tagOrGenre].map((tag, index) => {
-      // if (index < 3) {
         arr.push(<span key={index}>{tag.name ? tag.name : tag}</span>)
         arr.push('  ')
-      // }
     })
     return arr
   }

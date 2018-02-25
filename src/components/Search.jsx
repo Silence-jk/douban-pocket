@@ -5,9 +5,6 @@ import PropTypes from 'prop-types'
 class Search extends Component {
   constructor () {
     super()
-    this.state = {
-      value: ''
-    }
   }
 
   // 在组件渲染前调用，可以在里面用fetchJsonp设置初始页面
@@ -53,8 +50,11 @@ class Search extends Component {
       page = 
         <section className='search-page'>
           <form action=''>
-            <input type='text' placeholder={this.getPlaceHolder(this.props.kind)} onKeyUp={this.handleKeyUp.bind(this)} required />
-            <a onClick={this.handleSearch.bind(this)}>
+            <input type='text' placeholder={this.getPlaceHolder(this.props.kind)} 
+              onKeyUp={this.handleKeyUp.bind(this)} 
+              ref={input => this.input = input}
+              required />
+            <a onClick={this.handleSearch.bind(this, this.props.useQuery)}>
               <svg className='icon search' aria-hidden='true'>
                 <use xlinkHref='#icon-search' />
               </svg>
@@ -67,11 +67,8 @@ class Search extends Component {
   }
 
   handleSearch (value) {
-    if (this.state.value !== '') {
-      let value = this.state.value
-    }
-
-    fetchJsonp(`https://api.douban.com/v2/${this.props.kind}/search?q=${value}&count=5`, {
+    this.input.value = ''
+    fetchJsonp(`https://api.douban.com/v2/${this.props.kind}/search?q=${encodeURIComponent(value) + ''}&count=5`, {
       timeout: 3000
     }).then((response) => {
       return response.json()
@@ -88,9 +85,10 @@ class Search extends Component {
     const value = event.target.value
     if (event.keyCode === 13) {
       this.handleSearch(value)
+      event.target.value = ''
       return
     }
-    this.setState({ value: event.target.value })
+    this.props.storeQuery(event.target.value)
   }
 
   handleBack () {

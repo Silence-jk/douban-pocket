@@ -108,6 +108,8 @@ main > div {
   margin: 25px;
   border: 4px solid #d96F32;
   cursor: pointer;
+  min-height: 160px;
+  padding-left: 10px;
 }
 
 .item-img {
@@ -232,3 +234,11 @@ a > .tab {
   fill: cornflowerblue;
   color: cornflowerblue;
 }
+
+/* refresh */
+main > #sd {margin-left: 0; border: 0; min-height: 0; width: 95%;}
+#sd,#ud{margin-top: 0;width: 100%;}
+#sd1,#sd2,#ud1,#ud2{width: 100%;height: 70px;background: #e9f4f7;display: none;}
+#sd1,#ud2{height: 20px;}
+#sd1>p,#sd2>p,#ud1>p,#ud2>p{margin: 20px auto;padding-top:8px;text-align:center;font-size: 20px;color: #37bbf5;}
+  

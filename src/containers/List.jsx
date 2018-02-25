@@ -1,18 +1,24 @@
 import React, {Component} from 'react'
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux'
-import {updateDetail} from '../reducers/reducer'
+import {updateDetail, updateList} from '../reducers/reducer'
 import List from '../components/List'
 class ListContainer extends Component {
   handleDetailStatus (value) {
     this.props.onUpdateDetail(value)
-    // console.log('status: ' + this.props.datas.isShowDetail);
+  }
+
+  handleRefreshList(value) {
+    this.props.onUpdateList(value)
   }
 
   render () {
-    let {list, kind, isShowDetail} = this.props.datas
+    let {list, kind, isShowDetail, query} = this.props.datas
     return (
-      <List list={list} kind={kind} isShowDetail={isShowDetail} detailStatus={this.handleDetailStatus.bind(this)}/>
+      <List list={list} kind={kind} isShowDetail={isShowDetail} query={query}
+        detailStatus={this.handleDetailStatus.bind(this)}
+        refreshList={this.handleRefreshList.bind(this)}
+        /> 
     )
   }
 }
@@ -31,6 +37,9 @@ const mapDispatchToProps = (dispatch) => {
   return {
     onUpdateDetail: (newDeatilStatus) => {
       dispatch(updateDetail(newDeatilStatus))
+    },
+    onUpdateList: (newList) => {
+      dispatch(updateList(newList))
     }
   }
 }

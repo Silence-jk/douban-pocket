@@ -1,6 +1,7 @@
 const UPDATE_KIND = 'UPDATE_KIND'
 const UPDATE_LIST = 'UPDATE_LIST'
 const UPDATE_DETAIL = 'UPDATE_DETAIL'
+const UPDATE_QUERY = 'UPDATE_QUERY'
 /**
  *
  * @param {*} state
@@ -14,7 +15,8 @@ export default function (state, action) {
         list: {
 
         },
-        isShowDetail: false
+        isShowDetail: false,
+        query: ''
       }
     }
   }
@@ -25,7 +27,8 @@ export default function (state, action) {
         datas: {
           kind: action.newKind,
           list: state.datas.list,
-          isShowDetail: state.datas.isShowDetail
+          isShowDetail: state.datas.isShowDetail,
+          query: state.datas.query
         }
       }
     case UPDATE_LIST:
@@ -33,7 +36,8 @@ export default function (state, action) {
         datas: {
           kind: state.datas.kind,
           list: action.newList,
-          isShowDetail: state.datas.isShowDetail
+          isShowDetail: state.datas.isShowDetail,
+          query: state.datas.query
         }
       }
     case UPDATE_DETAIL:
@@ -41,7 +45,17 @@ export default function (state, action) {
         datas: {
           kind: state.datas.kind,
           list: state.datas.list,
-          isShowDetail: action.newDeatilStatus
+          isShowDetail: action.newDeatilStatus,
+          query: state.datas.query
+        }
+      }  
+    case UPDATE_QUERY:
+      return {
+        datas: {
+          kind: state.datas.kind,
+          list: state.datas.list,
+          isShowDetail: state.datas.isShowDetail,
+          query: action.newQuery
         }
       }  
     default:
@@ -69,5 +83,12 @@ export const updateDetail = (newDeatilStatus) => {
   return {
     type: UPDATE_DETAIL,
     newDeatilStatus
+  }
+}
+
+export const updateQuery = (newQuery) => {
+  return {
+    type: UPDATE_QUERY,
+    newQuery
   }
 }

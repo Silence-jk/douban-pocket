@@ -118,3 +118,5 @@ typings/
 
 # dotenv environment variables file
 .env
+
+note.md

@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
+import Refresh from './Refresh'
 import Item from './Item'
 import Detail from './Detail'
 
@@ -11,6 +12,10 @@ class List extends Component {
     }
   }
 
+  componentDidMount () {
+
+  }
+
   handleDetail(value) {
     console.log('value:' + value);
     this.setState({
@@ -19,8 +24,12 @@ class List extends Component {
     this.props.detailStatus(true)
   }
 
+  handleRefreshList(value) {
+    this.props.refreshList(value)
+  }
+
   render () {
-    const { list, kind } = this.props
+    const { list, kind, query } = this.props
     let items
     switch (kind) {
       case 'book':
@@ -36,10 +45,10 @@ class List extends Component {
         items = list.books
         break
     }
-    console.log('items: ' + items)
 
     return (
-      <main className='container'>
+      <main className='container' id="main">
+        <Refresh kind={kind} query={query} refreshList={this.handleRefreshList.bind(this)}/>
         {
           this.props.isShowDetail ? <Detail kind={kind} detailList={this.state.detailList}/> :
           items ? items.map((item, index) => {

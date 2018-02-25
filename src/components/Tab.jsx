@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import {getDefaultUrl} from '../util/util'
 import fetchJsonp from 'fetch-jsonp'
 import PropTypes from 'prop-types'
 
@@ -8,9 +9,6 @@ class Tab extends Component {
   }
 
   componentDidMount () {
-    console.log('componentDidMount .......');
-    console.log('kind:' + this.props.kind);
-     
     switch (this.props.kind) {
       case 'book':
         this._loadInitClass(0)
@@ -60,19 +58,6 @@ class Tab extends Component {
     }
   }
 
-  getDefaultUrl (kind) {
-    switch (kind) {
-      case 'book':
-        return `https://api.douban.com/v2/book/search?q=${encodeURIComponent('腾讯')}&count=5`
-      case 'movie':
-        return 'https://api.douban.com/v2/movie/top250?count=5'
-      case 'music':
-        return `https://api.douban.com/v2/music/search?q=${encodeURIComponent('许巍')}&count=5`
-      default:
-        return `https://api.douban.com/v2/book/search?q=${encodeURIComponent('腾讯')}&count=5`
-    }
-  }
-
   handleClick (event) {
     let curr = ''
     let use = event.target.querySelector('use')
@@ -87,14 +72,14 @@ class Tab extends Component {
   }
 
   handleTabKind (kind) {
-    let url = this.getDefaultUrl(kind)
+    let url = getDefaultUrl(kind)
     fetchJsonp(url, {
       timeout: 3000
     }).then((response) => {
       return response.json()
     }).then((json) => {
       console.log('parsed json', json)
-      this.props.result(json, kind)
+      this.props.result(json, kind, '')
       return json
     }).catch((ex) => {
       console.log('parsing failed', ex)

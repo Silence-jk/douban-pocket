@@ -52,7 +52,7 @@ const util = {
           util.bookCount = 10
           util.bookCurr = q
         }
-        return `https://api.douban.com/v2/book/search?q=${encodeURIComponent(q)}&count=${util.bookCount}`
+        return `https://api.douban.com/v2/book/search?q=${encodeURIComponent(q)}&start=0&count=${util.bookCount}`
       case 'movie':
         if (q === util.movieCurr) {
           util.movieCount += 10
@@ -80,6 +80,9 @@ const util = {
       count = 10
       curr = q
     }
+  },
+  getList: function (params) {
+        
   }
 }
 

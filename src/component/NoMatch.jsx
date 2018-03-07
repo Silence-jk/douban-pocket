@@ -5,5 +5,5 @@ const NoMatch = ({ location }) => (
       No match for <code>{location.pathname}</code>
     </h3>
   </div>
-);
-module.exports = NoMatch
+)
+export default NoMatch

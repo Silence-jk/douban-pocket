@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { NavLink } from 'react-router-dom'
 
 class Tab extends Component {
-  componentDidMount() {
+  componentDidMount () {
     switch (this.props.kind) {
       case 'book':
         this._loadInitClass(0)
@@ -17,7 +17,7 @@ class Tab extends Component {
         break
     }
   }
-  _loadInitClass(index) {
+  _loadInitClass (index) {
     let nav = this.nav
     let uses = nav.querySelectorAll('use')
     let spans = nav.querySelectorAll('span')
@@ -35,7 +35,7 @@ class Tab extends Component {
     }
   }
 
-  _loadClass(curr) {
+  _loadClass (curr) {
     let nav = this.nav
     let uses = nav.querySelectorAll('use')
     let spans = nav.querySelectorAll('span')
@@ -51,7 +51,7 @@ class Tab extends Component {
     }
   }
 
-  handleClick(event) {
+  handleClick (event) {
     let curr = ''
     let use = event.target.querySelector('use')
 
@@ -63,23 +63,23 @@ class Tab extends Component {
     this._loadClass(curr)
   }
 
-  render() {
+  render () {
     return (
       <footer>
         <nav className='nav' ref={nav => this.nav = nav} onClick={this.handleClick.bind(this)}>
-          <NavLink className='nav-link book' to='/book'>
+          <NavLink className='nav-link book' to='/'>
             <svg className='icon tab' aria-hidden='true'>
               <use xlinkHref='#icon-book' />
             </svg>
             <span>图书</span>
           </NavLink>
-          <NavLink className='nav-link' to="/movie" >
+          <NavLink className='nav-link' to='/movie' >
             <svg className='icon tab' aria-hidden='true'>
               <use xlinkHref='#icon-movie' />
             </svg>
             <span>电影</span>
           </NavLink>
-          <NavLink className='nav-link' to="/music" >
+          <NavLink className='nav-link' to='/music' >
             <svg className='icon tab' aria-hidden='true'>
               <use xlinkHref='#icon-music' />
             </svg>

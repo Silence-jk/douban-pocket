@@ -3,7 +3,7 @@ import fetchJsonp from 'fetch-jsonp'
 import Item from './Item'
 const List = ({ match }) => {
   let items
-  console.log('list: ' + this.props.list);
+  console.log('list: ' + this.props.list)
   const { list } = this.props
   switch (match.path) {
     case '/book':

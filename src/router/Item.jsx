@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import fetchJsonp from 'fetch-jsonp'
 class Item extends Component {
-  getTag(tagOrGenre) {
+  getTag (tagOrGenre) {
     const item = this.props.item
     let arr = []
     item[tagOrGenre].map((tag, index) => {
@@ -13,7 +13,7 @@ class Item extends Component {
     })
     return arr
   }
-  getItemHTML(kind) {
+  getItemHTML (kind) {
     let itemHTML
     const item = this.props.item
     switch (kind) {
@@ -79,7 +79,7 @@ class Item extends Component {
     }
     return itemHTML
   }
-  handleClick(kind, id) {
+  handleClick (kind, id) {
     fetchJsonp(`https://api.douban.com/v2/${kind}/${id}`, {
       timeout: 3000
     }).then((response) => {
@@ -91,7 +91,7 @@ class Item extends Component {
       console.log('parsing failed', ex)
     })
   }
-  render() {
+  render () {
     return (
       this.getItemHTML(this.props.kind)
     )

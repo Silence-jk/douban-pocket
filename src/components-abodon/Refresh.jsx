@@ -64,6 +64,7 @@ class Refresh extends Component {
   }
 
   touchEnd (way, event) {
+    event.preventDefault()
     let {_end} = this.state
     if (_end > 0) {
       // 左滑或上滑
@@ -88,6 +89,7 @@ class Refresh extends Component {
       }).then((response) => {
         return response.json()
       }).then((json) => {
+        // ..........
         this.props.refreshList(json)
         this.slideDownStep3()
         return json

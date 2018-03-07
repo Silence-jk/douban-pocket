@@ -1,3 +1,5 @@
+import React, {Component} from 'react'
+
 const util = {
   self: this,
   count: 10,
@@ -81,8 +83,13 @@ const util = {
       curr = q
     }
   },
-  getList: function (params) {
-        
+  getTag(tagOrGenre, item) {
+    let arr = []
+    item[tagOrGenre].map((tag, index) => {
+      arr.push(<span key={index}>{tag.name ? tag.name : tag}</span>)
+      arr.push('  ')
+    })
+    return arr
   }
 }
 

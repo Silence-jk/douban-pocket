@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import fetchJsonp from 'fetch-jsonp'
 import SearchBar from './SearchBar'
+import {getTag} from '../../util/util'
 
 class Detail extends Component {
   constructor({ match }) {
@@ -27,16 +28,6 @@ class Detail extends Component {
     })
   }
 
-  getTag(tagOrGenre) {
-    const item = this.state.item
-    let arr = []
-    item[tagOrGenre].map((tag, index) => {
-      arr.push(<span key={index}>{tag.name ? tag.name : tag}</span>)
-      arr.push('  ')
-    })
-    return arr
-  }
-
   render() {
     const item = this.state.item
     console.log('item ' + item);
@@ -60,7 +51,7 @@ class Detail extends Component {
                     <p>日期：<span>{item['pubdate']}</span></p>
                     <p>评分：<span>{item['rating']['average']}</span></p>
                     <p>价钱：<span>&yen;{item['price']}</span></p>
-                    <p className='tag'>{this.getTag('tags')}</p>
+                    <p className='tag'>{getTag('tags', item)}</p>
                   </div>
                 </div>
                 <hr />

@@ -133,6 +133,10 @@ main .load-more {
   height: auto;
 }
 
+main .load-finish {
+  text-align: center;
+}
+
 .item-img {
   float: left;
   display: block;
@@ -149,7 +153,6 @@ main .load-more {
 
 div p {
   color: white;
-  text-align: center;
 }
 
 .book p {

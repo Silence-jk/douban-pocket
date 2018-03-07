@@ -1,17 +1,8 @@
 import React, {Component} from 'react'
 import {NavLink, Route} from 'react-router-dom'
 import BookDetail from './BookDetail'
+import {getTag} from '../../util/util'
 
-const getTag = (tagOrGenre, item) => {
-  let arr = []
-  item[tagOrGenre].map((tag, index) => {
-    if (index < 3) {
-      arr.push(<span key={Math.random()}>{tag.name ? tag.name : tag}</span>)
-      arr.push('  ')
-    }
-  })
-  return arr
-}
 
 const Item = (props) => {
   // const {item} = props

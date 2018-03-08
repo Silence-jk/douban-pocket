@@ -1,8 +1,6 @@
 import React from 'react'
 import {Link} from 'react-router-dom'
 import {getTag} from '../../util/util'
-import {Route} from 'react-router-dom'
-import BookDetail  from './BookDetail'
 
 const Item = (props) => {
   const item = props.item

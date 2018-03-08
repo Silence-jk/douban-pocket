@@ -33,8 +33,8 @@ class Detail extends Component {
     return (
       <div>
         {
-          item === null ? <p>正在加载中......</p> :
-          <div>
+          item === null ? <p>正在加载中......</p>
+          : <div>
             <SearchBar title={item['title']} />
             <main>
               <div className='item-detail'>

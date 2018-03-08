@@ -40,10 +40,10 @@ class LoadMore extends Component {
     }
 
     window.addEventListener('scroll', function () {
-      if(self.props.isLoadFinish) {
-        return 
+      if (self.props.isLoadFinish) {
+        return
       }
-      
+
       if (timeoutId) {
         clearTimeout(timeoutId)
       }
@@ -57,7 +57,7 @@ class LoadMore extends Component {
       <div className='load-more' ref='wrapper'>
         {
           this.state.loading
-            ?  <span style={{color: '#fff'}}>加载中...</span>
+            ? <span style={{color: '#fff'}}>加载中...</span>
             : ''
         }
       </div>

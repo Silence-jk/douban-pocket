@@ -8,6 +8,18 @@ class Search extends Component {
     }
   }
 
+  getPlaceHolder () {
+    switch (this.props.kind) {
+      case 'book':
+        return '书名、作者、ISBN'
+      case 'movie':
+        return '电影、影院、影人、电视剧'
+      case 'music':
+        return '唱片名、表演者、ISRC、条码'
+      default:
+        break
+    }
+  }
   // https://api.douban.com/v2/book/search?q=A&count=5
   handleSearch (value) {
     // value = this.state.value
@@ -15,21 +27,7 @@ class Search extends Component {
     if (this.state.value !== '') {
       value = this.state.value
     }
-    let kind
-    switch (this.props.kind) {
-      case '/':
-      case '/book':
-        kind = 'book'        
-        break;
-      case '/music':
-        kind = 'music'
-        break
-      case '/movie':
-        kind = 'movie'
-        break  
-      default:
-        break;
-    }
+    let kind = this.props.kind
     fetchJsonp(`https://api.douban.com/v2/${kind}/search?q=${value}&count=5`, {
       timeout: 3000
     }).then((response) => {
@@ -44,7 +42,7 @@ class Search extends Component {
   }
   handleKeyUp (event) {
     const value = event.target.value
-    console.log(value)
+    // console.log(value)
     if (event.keyCode === 13) {
       console.log('come in')
       this.handleSearch(value)
@@ -58,7 +56,7 @@ class Search extends Component {
         <div className='header-wrap'>
           <section className='search-page'>
             <form action='/' method='get'>
-              <input className='show' type='text' placeholder='书名、作者、ISBN' onKeyUp={this.handleKeyUp.bind(this)} required />
+              <input className='show' type='text' placeholder={this.getPlaceHolder()} onKeyUp={this.handleKeyUp.bind(this)} required />
               <a onClick={this.handleSearch.bind(this)}>
                 <svg className='icon search' aria-hidden='true'>
                   <use xlinkHref='#icon-search' />

@@ -4,7 +4,7 @@ import SearchBar from '../../common/SearchBar'
 import { getTag } from '../../util/util'
 
 class Detail extends Component {
-  constructor({ match }) {
+  constructor ({ match }) {
     super()
     this.state = {
       url: `https://api.douban.com/v2/music/${match.params.id}`,
@@ -12,11 +12,11 @@ class Detail extends Component {
     }
   }
 
-  componentWillMount() {
+  componentWillMount () {
     this._loadItem()
   }
 
-  _loadItem() {
+  _loadItem () {
     fetchJsonp(this.state.url, {
       timeout: 3000
     }).then((response) => {
@@ -28,13 +28,13 @@ class Detail extends Component {
     })
   }
 
-  render() {
+  render () {
     const item = this.state.item
     return (
       <div>
         {
-          item === null ? <p>正在加载中......</p> :
-            <div>
+          item === null ? <p>正在加载中......</p>
+            : <div>
               <SearchBar title={item['title']} />
               <main>
                 <div className='item-detail'>
@@ -44,7 +44,7 @@ class Detail extends Component {
                     </div>
                     <div className='item-info'>
                       <p>名称：<span>{item['title']}</span></p>
-                      <p className='tag'>{this.getTag('tags')}</p>
+                      <p className='tag'>{getTag('tags', item)}</p>
                       <p>作者：<span>{
                         item['author'].map(author => {
                           return author.name

@@ -17,7 +17,7 @@ const util = {
       case 'movie':
         return `https://api.douban.com/v2/movie/top250?count=${count}`
       case 'music':
-        return `https://api.douban.com/v2/music/search?q=${encodeURIComponent('许巍')}&count=$.count}`
+        return `https://api.douban.com/v2/music/search?q=${encodeURIComponent('许巍')}&count=${count}`
       default:
         return `https://api.douban.com/v2/book/search?q=${encodeURIComponent('腾讯')}&count=${count}`
     }
@@ -49,7 +49,7 @@ const util = {
     switch (kind) {
       case 'book':
         if (q === util.bookCurr) {
-          util.bookCount += 10
+          util.bookCount += 5
         } else {
           util.bookCount = 10
           util.bookCurr = q
@@ -57,20 +57,20 @@ const util = {
         return `https://api.douban.com/v2/book/search?q=${encodeURIComponent(q)}&start=0&count=${util.bookCount}`
       case 'movie':
         if (q === util.movieCurr) {
-          util.movieCount += 10
+          util.movieCount += 5
         } else {
           util.movieCount = 10
           util.movieCurr = q
         }
-        return `https://api.douban.com/v2/movie/search?q=${encodeURIComponent(q)}&count=${util.movieCount}`
+        return `https://api.douban.com/v2/movie/search?q=${encodeURIComponent(q)}&start=0&count=${util.movieCount}`
       case 'music':
         if (q === util.musicCurr) {
-          util.musicCount += 10
+          util.musicCount += 5
         } else {
           util.musicCount = 10
           util.musicCurr = q
         }
-        return `https://api.douban.com/v2/music/search?q=${encodeURIComponent(q)}&count=${util.musicCount}`
+        return `https://api.douban.com/v2/music/search?q=${encodeURIComponent(q)}&start=0&count=${util.musicCount}`
       default:
         return `https://api.douban.com/v2/book/search?q=${encodeURIComponent('腾讯')}&count=${util.bookCount}`
     }

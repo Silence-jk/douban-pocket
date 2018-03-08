@@ -7,20 +7,19 @@ import MovieDetail from '../component/Movie/MovieDetail'
 import MusicPage from '../component/Muisc/MusicPage'
 import MusicDetail from '../component/Muisc/MusicDetail'
 import NoMatch from './NoMatch'
-import Tab from './Tab'
 const App = () => (
   <Router>
     <div>
-    <Switch>
-      <Route exact path='/' component={BookPage} />
-      <Route path={`/book/:id`} component={BookDetail} />
-      <Route path='/book' component={BookPage} />
-      <Route path='/movie/:id' component={MovieDetail} />
-      <Route path='/movie' component={MoviePage} />
-      <Route path='/music/:id' component={MusicDetail} />
-      <Route path='/music' component={MusicPage} />
-      <Route component={NoMatch} />
-    </Switch>
+      <Switch>
+        <Route exact path='/' component={BookPage} />
+        <Route path={`/book/:id`} component={BookDetail} />
+        <Route path='/book' component={BookPage} />
+        <Route path='/movie/:id' component={MovieDetail} />
+        <Route path='/movie' component={MoviePage} />
+        <Route path='/music/:id' component={MusicDetail} />
+        <Route path='/music' component={MusicPage} />
+        <Route component={NoMatch} />
+      </Switch>
     </div>
   </Router>
 )

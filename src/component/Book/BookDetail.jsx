@@ -35,7 +35,7 @@ class Detail extends Component {
     return (
       <div>
         {
-          item == null ? <p>正在加载中....</p>  
+          item == null ? <p>正在加载中....</p>
           : <div>
             <SearchBar title={item['title']} />
             <main>

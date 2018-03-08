@@ -1,16 +1,14 @@
-import React, {Component} from 'react'
-import {NavLink, Route} from 'react-router-dom'
-import BookDetail from './BookDetail'
+import React from 'react'
+import {Link} from 'react-router-dom'
 import {getTag} from '../../util/util'
-
+import {Route} from 'react-router-dom'
+import BookDetail  from './BookDetail'
 
 const Item = (props) => {
-  // const {item} = props
-  // console.log('item ...' +　JSON.stringify(props.item))
   const item = props.item
   return (
     <div>
-      <NavLink className='book' to={`/book/${item['id']}`}>
+      <Link className='book' to={`/book/${item['id']}`}>
         <div className='item-img'>
           <img src={item['image']} />
         </div>
@@ -21,7 +19,7 @@ const Item = (props) => {
           <p>评分：<span>{item['rating']['average']}</span></p>
           <p>时间：<span>{item['pubdate']}</span></p>
         </div>
-      </NavLink>
+      </Link>
     </div>
   )
 }

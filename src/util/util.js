@@ -1,4 +1,4 @@
-import React, {Component} from 'react'
+import React from 'react'
 
 const util = {
   self: this,
@@ -83,8 +83,9 @@ const util = {
       curr = q
     }
   },
-  getTag(tagOrGenre, item) {
+  getTag (tagOrGenre, item) {
     let arr = []
+    // console.log(item);
     item[tagOrGenre].map((tag, index) => {
       arr.push(<span key={index}>{tag.name ? tag.name : tag}</span>)
       arr.push('  ')

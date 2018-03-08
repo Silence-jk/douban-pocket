@@ -18,7 +18,7 @@ class Tab extends Component {
     }
   }
   _loadInitClass (index) {
-    let nav = this.nav
+    let nav = this.refs.nav
     let uses = nav.querySelectorAll('use')
     let spans = nav.querySelectorAll('span')
 
@@ -36,7 +36,7 @@ class Tab extends Component {
   }
 
   _loadClass (curr) {
-    let nav = this.nav
+    let nav = this.refs.nav
     let uses = nav.querySelectorAll('use')
     let spans = nav.querySelectorAll('span')
 
@@ -66,8 +66,8 @@ class Tab extends Component {
   render () {
     return (
       <footer>
-        <nav className='nav' ref={nav => this.nav = nav} onClick={this.handleClick.bind(this)}>
-          <NavLink className='nav-link book' to='/'>
+        <nav className='nav' ref='nav' onClick={this.handleClick.bind(this)}>
+          <NavLink className='nav-link book' to='/book'>
             <svg className='icon tab' aria-hidden='true'>
               <use xlinkHref='#icon-book' />
             </svg>
@@ -91,4 +91,4 @@ class Tab extends Component {
   }
 }
 
-module.exports = Tab
+export default Tab

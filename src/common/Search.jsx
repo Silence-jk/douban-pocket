@@ -7,15 +7,30 @@ class Search extends Component {
       value: ''
     }
   }
- 
+
   // https://api.douban.com/v2/book/search?q=A&count=5
   handleSearch (value) {
     // value = this.state.value
-    console.log('ss: ' + value)
+    // console.log('ss: ' + value)
     if (this.state.value !== '') {
-     value = this.state.value
+      value = this.state.value
     }
-    fetchJsonp(`https://api.douban.com/v2/book/search?q=${value}&count=5`, {
+    let kind
+    switch (this.props.kind) {
+      case '/':
+      case '/book':
+        kind = 'book'        
+        break;
+      case '/music':
+        kind = 'music'
+        break
+      case '/movie':
+        kind = 'movie'
+        break  
+      default:
+        break;
+    }
+    fetchJsonp(`https://api.douban.com/v2/${kind}/search?q=${value}&count=5`, {
       timeout: 3000
     }).then((response) => {
       return response.json()
@@ -58,4 +73,5 @@ class Search extends Component {
     )
   }
 }
-module.exports = Search
+
+export default Search

@@ -131,6 +131,7 @@ main > div {
 main .load-more {
   min-height: 0;
   height: auto;
+  border: none;
 }
 
 main .load-finish {
@@ -202,6 +203,12 @@ p .tags {
 .movie-detail img {
   height: auto;
   width: auto;
+}
+
+.movie-detail p > img {
+  width: 105px;
+  border-radius: 50%;
+  margin: 5px;
 }
 
 .movie-detail .item-info {

@@ -6,7 +6,7 @@ class LoadMore extends Component {
   constructor (props) {
     super(props)
     this.state = {
-      loading: false
+      loading: true
     }
   }
 
@@ -34,7 +34,7 @@ class LoadMore extends Component {
       const windowHeight = window.screen.height
 
       if (top && top < windowHeight) {
-        self.setState({loading: true})
+        // self.setState({loading: true})
         self._loadMoreData()
       }
     }

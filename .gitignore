@@ -1,5 +1,5 @@
 # dist
-dist
+
 public
 
 # Logs
@@ -122,3 +122,5 @@ typings/
 note.md
 
 test
+
+src/
